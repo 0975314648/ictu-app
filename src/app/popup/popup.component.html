@@ -1,0 +1,17 @@
+<!-- Popup overlay -->
+<div class="popup-overlay" *ngIf="isVisible" (click)="closePopup()"></div>
+
+<!-- Popup content -->
+<div class="popup-content" *ngIf="isVisible">
+    <h6 [innerHTML]="questionName"></h6>
+    <div class="row mt-5">
+        <div class="row" *ngFor="let answer of answers; let idx = index">  
+            <div class="col-md-2">{{handleIndex(idx)}}</div>
+            <div class="col-md-10 pl-0"><span [innerHTML]="answer"></span></div>
+        </div>
+    </div>
+    <button class="btn btn-danger mt-2" (click)="closePopup()">Close</button>
+</div>
+
+<!-- Button to open the popup -->
+<button class="btn btn-primary" (click)="openPopup()">{{name}}</button>

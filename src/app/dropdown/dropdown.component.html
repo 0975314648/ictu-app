@@ -1,0 +1,12 @@
+<div>
+    <label for="dropdown">Chọn môn học:</label>
+    <select class="form-select" (change)="onSelect($event)">
+      <option *ngFor="let item of data" [value]="item.id">
+        {{ item.subjectName }}
+      </option>
+    </select>
+  </div>
+  
+  <!-- <div *ngIf="selectedSubject">
+    <p>You selected: {{ selectedSubject }}</p>
+  </div> -->
