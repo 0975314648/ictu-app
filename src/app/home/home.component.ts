@@ -33,7 +33,11 @@ export class HomeComponent {
   constructor(private apiService: ApiService, private router: Router) { }
 
   handleDataOption(subject: Subject) {
-    this.isStep2 = true;
+    if(subject.id!=='0') {
+      this.isStep2 = true;
+    } else {
+      this.isStep2 = false;
+    }
     this.subjectSelected = subject;
   }
 
@@ -50,7 +54,7 @@ export class HomeComponent {
     this.apiService.postSubject(body).subscribe(res => {
       if (res && res.errorCode === 0 && res.data) {
         this.subjects = res.data;
-        this.subjects?.unshift({ id: "0", subjectName: 'Chọn môn học' });
+        this.subjects?.unshift({ id: "0", subjectName: '---------   Chọn môn học  ---------' });
       }
     });
   }
