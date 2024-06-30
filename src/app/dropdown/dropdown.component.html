@@ -1,5 +1,5 @@
 <div>
-    <label for="dropdown">Chọn môn học:</label>
+    <!-- <label for="dropdown">Chọn môn học:</label> -->
     <select class="form-select" (change)="onSelect($event)">
       <option *ngFor="let item of data" [value]="item.id">
         {{ item.subjectName }}

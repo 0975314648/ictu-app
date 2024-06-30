@@ -16,6 +16,7 @@ import { PopupComponent } from './popup/popup.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptor.service';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { InterceptorService } from './interceptor.service';
     InputComponent,
     ButtonComponent,
     PopupComponent,
-    DialogComponent
+    DialogComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

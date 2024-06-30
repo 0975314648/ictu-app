@@ -18,11 +18,22 @@ export class DropdownComponent {
 
   selectedSubject?: Subject;
 
-  constructor() { }
+  constructor() { 
+    
+  }
+  
+  ngOnInit() {
+    this.addDefaultOption();
+    console.log("data:", this.data);
+  }
 
   onSelect(event: any) {
     const selectedValue = event.target.value;
     this.selectedSubject = this.data?.find(data => data.id === selectedValue);
     this.selectedItem.emit(this.selectedSubject);
+  }
+
+  addDefaultOption() {
+    this.data?.unshift({ id: "0", subjectName: 'Chọn môn học' });
   }
 }

@@ -26,6 +26,10 @@ export class HomeComponent {
   isStep3?: boolean = false;
   subjectSelected?: Subject;
 
+  totalItems?: number;
+  itemsPerPage: number = 10;
+  currentPage: number = 1;
+
   constructor(private apiService: ApiService, private router: Router) { }
 
   handleDataOption(subject: Subject) {
@@ -35,6 +39,8 @@ export class HomeComponent {
 
   ngOnInit() {
     this.handleGetSubject();
+    this.totalItems = this.subjects?.length;
+    this.updatePaginatedItems();
   }
 
   handleGetSubject() {
@@ -44,6 +50,7 @@ export class HomeComponent {
     this.apiService.postSubject(body).subscribe(res => {
       if (res && res.errorCode === 0 && res.data) {
         this.subjects = res.data;
+        this.subjects?.unshift({ id: "0", subjectName: 'Chọn môn học' });
       }
     });
   }
@@ -76,5 +83,16 @@ export class HomeComponent {
         this.isStep3 = true;
       }
     });
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.updatePaginatedItems();
+  }
+
+  updatePaginatedItems() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.subjects = this.subjects?.slice(startIndex, endIndex);
   }
 }
