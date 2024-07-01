@@ -23,7 +23,7 @@ export class LoginComponent {
       if (res && res.errorCode === 1) {
         alert('Login thất bại: ' + res.errorMessage);
       } else {
-        localStorage.setItem('token', res.data.accessToken);
+        localStorage?.setItem('token', res.data.accessToken);
         this.router.navigate(['/home']);
       }
     });

@@ -25,12 +25,17 @@ export class HomeComponent {
   isStep2?: boolean = false;
   isStep3?: boolean = false;
   subjectSelected?: Subject;
+  receivedText: string = '';
 
   totalItems?: number;
   itemsPerPage: number = 10;
   currentPage: number = 1;
 
   constructor(private apiService: ApiService, private router: Router) { }
+
+  receiveData(data: string) {
+    this.receivedText = data;
+  }
 
   handleDataOption(subject: Subject) {
     if(subject.id!=='0') {
@@ -65,7 +70,7 @@ export class HomeComponent {
     }
     this.apiService.postLogout(body).subscribe(res => {
       if (res && res.errorCode === 0) {
-        localStorage.setItem('token', '');
+        localStorage?.setItem('token', '');
         this.router.navigate(['/login']);
       }
     }, error => {
